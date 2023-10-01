@@ -7,7 +7,7 @@ import (
 )
 
 func NewDB() (*sql.DB, error) {
-	db, err := sql.Open("mysql", "hoge:hoge@tcp(db)/hoge_development?parseTime=true")
+	db, err := sql.Open("mysql", "root:password@tcp(db)/bearer_development?parseTime=true")
 	if err != nil {
 		return nil, err
 	}

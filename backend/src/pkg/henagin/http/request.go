@@ -2,6 +2,7 @@ package http
 
 import (
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"regexp"
 	"strings"
@@ -72,4 +73,20 @@ func (request *Request) CheckBasicAuthentication() bool {
 	}
 
 	return false
+}
+
+func (request *Request) CheckBearerAuthentication() (*model.BearerToken, error) {
+	if authorizationHeader, isThere := request.Headers["Authorization"]; isThere {
+		// Authorizationヘッダにセットしてあるトークンをゲット
+		token := strings.SplitN(authorizationHeader, " ", 2)[1]
+		// そのトークンと一致するトークンを見つける
+		bearerToken, err := model.FindBearerTokenByToken(token)
+		if err != nil {
+			return nil, fmt.Errorf("fail to find token: %v", err)
+		}
+
+		return bearerToken, nil
+	}
+
+	return nil, errors.New("fail to find Authorization Header")
 }

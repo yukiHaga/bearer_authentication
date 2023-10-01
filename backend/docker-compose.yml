@@ -23,14 +23,13 @@ services:
     image: mysql:8.0.29
     platform: linux/amd64
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: hoge
       MYSQL_PASSWORD: hoge
-      MYSQL_DATABASE: hoge_development
     volumes:
       - db-data:/var/lib/mysql
+      - ./src/sqls:/docker-entrypoint-initdb.d
       - ./src/config/mysql/conf:/etc/mysql/conf.d:cached
-      - ./src/seed/sqls:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
   redis:

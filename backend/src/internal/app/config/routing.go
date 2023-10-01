@@ -29,6 +29,9 @@ var Routing = []*pattern.URLPattern{
 	pattern.NewURLPattern("/basic", middleware.CheckBasicAuthentication(controller.NewBasicAuthentication())),
 	pattern.NewURLPattern("/basic/sample", middleware.CheckBasicAuthentication(controller.NewSample())),
 	pattern.NewURLPattern("/sample2", middleware.CheckBasicAuthentication(controller.NewSample())),
+	pattern.NewURLPattern("/users", controller.NewBearerSignUp()),
+	// 本当は/sessionsの方が良い
+	pattern.NewURLPattern("/bearer_sessions", controller.NewBearerSession()),
 }
 
 // // URLパラメータを扱うのでこっちのデータ構造を採用した

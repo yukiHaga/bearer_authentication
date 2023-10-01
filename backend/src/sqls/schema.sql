@@ -1,0 +1,33 @@
+USE bearer_development;
+
+CREATE TABLE users (
+  id BIGINT UNSIGNED AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_digest LONGTEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(id)
+) COMMENT="ログインユーザー";
+
+ALTER TABLE users RENAME INDEX email TO index_users_on_email;
+
+
+CREATE TABLE bearer_users (
+  id BIGINT UNSIGNED AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_digest LONGTEXT NOT NULL,
+  PRIMARY KEY(id)
+) COMMENT="ベアラーユーザー";
+
+ALTER TABLE bearer_users RENAME INDEX email TO index_bearer_users_on_email;
+
+CREATE TABLE bearer_tokens (
+  id BIGINT UNSIGNED AUTO_INCREMENT,
+  token VARCHAR(255) NOT NULL,
+  user_id BIGINT UNSIGNED,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(id)
+) COMMENT="ベアラートークン";
