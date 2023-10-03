@@ -24,8 +24,8 @@ type BearerSignUpRequestBody struct {
 
 // トークンは配列でも良いかも
 type BearerSignUpResponseBody struct {
-	User  *model.BearerUser
-	Token *model.BearerToken
+	User  *model.BearerUser  `json:"user"`
+	Token *model.BearerToken `json:"token"`
 }
 
 func (c *BearerSignUp) Action(request *http.Request) *http.Response {
@@ -33,6 +33,8 @@ func (c *BearerSignUp) Action(request *http.Request) *http.Response {
 	if request.Method == http.Post {
 		body := &BearerSignUpRequestBody{}
 		err := json.Unmarshal(request.Body, body)
+		log.Println(request.Body)
+		log.Println(body)
 		// ボディのパースに失敗
 		if err != nil {
 			log.Printf("fail to body parse: %v", err)

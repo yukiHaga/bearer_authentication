@@ -12,11 +12,11 @@ type BearerTokenId int64
 
 // PasswordとConfirmationはRailsの家蔵属性として入っていたから、一応入れておいた
 type BearerToken struct {
-	Id        BearerTokenId
-	Token     string
-	UserId    BearerUserId
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	Id        BearerTokenId `json:"id"`
+	Token     string        `json:"token"`
+	UserId    BearerUserId  `json:"-"`
+	CreatedAt time.Time     `json:"created_at"`
+	UpdatedAt time.Time     `json:"updated_at"`
 }
 
 func NewBearerToken(userId BearerUserId) *BearerToken {

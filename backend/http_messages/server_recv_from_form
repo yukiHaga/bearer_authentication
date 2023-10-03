@@ -1,8 +1,19 @@
-POST /bearer_sessions HTTP/1.1
+POST /users HTTP/1.1
 Host: localhost:8080
-User-Agent: curl/7.86.0
-Accept: */*
+Connection: keep-alive
+Content-Length: 95
+sec-ch-ua: "Google Chrome";v="117", "Not;A=Brand";v="8", "Chromium";v="117"
+sec-ch-ua-platform: "macOS"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
 Content-Type: application/json
-Content-Length: 55
+Accept: */*
+Origin: http://localhost:3000
+Sec-Fetch-Site: same-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6,zh;q=0.5
 
-{ "email": "hoge25@gmail.com", "password": "hogehoge" }
+{"name":"サトシ","email":"yuki0@gmail.com","password":"hoge","password_confirmation":"hoge"}

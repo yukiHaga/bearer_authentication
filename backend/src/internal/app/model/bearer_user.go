@@ -12,12 +12,12 @@ type BearerUserId int64
 
 // PasswordとConfirmationはRailsの家蔵属性として入っていたから、一応入れておいた
 type BearerUser struct {
-	Id                   BearerUserId
-	Name                 string
-	Email                string
-	PasswordDigest       string
-	Password             string
-	PasswordConfirmation string
+	Id                   BearerUserId `json:"id"`
+	Name                 string       `json:"name"`
+	Email                string       `json:"email"`
+	PasswordDigest       string       `json:"-"`
+	Password             string       `json:"-"`
+	PasswordConfirmation string       `json:"-"`
 }
 
 func NewBearerUser(name, email, password, passwordConfirmation string) *BearerUser {
